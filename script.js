@@ -1,5 +1,7 @@
-var map;
+var map; //Google maps object
+var marker; //position Marker object
 
+//location presets for future use
 var CIB = {lat: 39.172076, lng: -86.501560}; /* Cyberinfrastructure building */
 var INRD = {lat: 39.167530, lng: -86.526956}; /* 201 N. Indiana */
 var CORG = {lat: 39.167530, lng: -86.526956}; /* Center on Congretional Research, 201 N. Indiana*/
@@ -20,16 +22,58 @@ var HEALTHY = {lat: 39.167772, lng: -86.522478}; /* Healthy IU */
 var GISB = {lat: 39.169646, lng: -86.516171}; /* Global and International Studies Building, Patrick Omeara */
 var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
 
-function initMap() {
+/*function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.1686, lng: -86.5174},
     zoom: 15
-  });
-  
-  var CIB_marker = new google.maps.Marker({
+  });*/
+
+//Check if supported browser
+function getLocation() {
+	if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(showPosition, showError);
+  } else { 
+      x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+//Get geolocation pass to Google
+function showPosition(position) {
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    var latlng = new google.maps.LatLng(lat, lng); //populated Position object
+
+    var myOptions = {
+    center:latlng,zoom:14,
+    mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
+    mapTypeControl:false, //reduce screen clutter
+    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
+    }
+    
+    map = new google.maps.Map(document.getElementById("map"), myOptions); //make the map
+    marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"}); //put a marker on screen
+}
+
+/*  var CIB_marker = new google.maps.Marker({
     position: navigator.geolocation.getCurrentPosition()
     map: map,
     title: 'Cyberinfrastructure Building'
-  });
-  
+  });*/
+
+//geolocation error handling  
+function showError(error) {
+  switch(error.code) {
+      case error.PERMISSION_DENIED:
+          x.innerHTML = "User denied the request for Geolocation."
+          break;
+      case error.POSITION_UNAVAILABLE:
+          x.innerHTML = "Location information is unavailable."
+          break;
+      case error.TIMEOUT:
+          x.innerHTML = "The request to get user location timed out."
+          break;
+      case error.UNKNOWN_ERROR:
+          x.innerHTML = "An unknown error occurred."
+          break;
+  }
 }
