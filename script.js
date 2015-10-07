@@ -20,16 +20,16 @@ var HEALTHY = {lat: 39.167772, lng: -86.522478}; /* Healthy IU */
 var GISB = {lat: 39.169646, lng: -86.516171}; /* Global and International Studies Building, Patrick Omeara */
 var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
 
-var CIB_marker = new google.maps.Marker({
-    position: CIB,
-    title:"Cyberinfrastructure Building"
-});
-
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.1686, lng: -86.5174},
     zoom: 15
   });
   
-  CIB_marker.setMap(map);
+  var CIB_marker = new google.maps.Marker({
+    position: CIB,
+    map: map,
+    title: 'Cyberinfrastructure Building'
+  });
+  
 }
