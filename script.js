@@ -27,7 +27,7 @@ function initMap() {
   });
   
   var CIB_marker = new google.maps.Marker({
-    position: CIB,
+    position: navigator.geolocation.getCurrentPosition()
     map: map,
     title: 'Cyberinfrastructure Building'
   });
