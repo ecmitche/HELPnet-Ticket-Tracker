@@ -1,6 +1,6 @@
 var map; //Google maps object
 var marker; //position Marker object
-//modification
+var id; //position event handler ID
 //location presets for future use
 var CIB = {lat: 39.172076, lng: -86.501560}; /* Cyberinfrastructure building */
 var INRD = {lat: 39.167530, lng: -86.526956}; /* 201 N. Indiana */
@@ -31,7 +31,8 @@ var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
 //Check if supported browser
 function getLocation() {
 	if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition, showError);
+    	var positionOptions = {enableHighAccuracy: true,timeout: 500,maximumAge: 10};
+      id = navigator.geolocation.getCurrentPosition.watchPosition(showPosition, showError, positionOptions);
   } else { 
       x.innerHTML = "Geolocation is not supported by this browser.";
   }
@@ -44,7 +45,7 @@ function showPosition(position) {
     var latlng = new google.maps.LatLng(lat, lng); //populated Position object
 
     var myOptions = {
-    center:latlng,zoom:14,
+    center:latlng,zoom:17,
     mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
     mapTypeControl:false, //reduce screen clutter
     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
@@ -64,16 +65,16 @@ function showPosition(position) {
 function showError(error) {
   switch(error.code) {
       case error.PERMISSION_DENIED:
-          x.innerHTML = "User denied the request for Geolocation."
+          alert("User denied the request for Geolocation.")
           break;
       case error.POSITION_UNAVAILABLE:
-          x.innerHTML = "Location information is unavailable."
+          alert("Location information is unavailable.")
           break;
       case error.TIMEOUT:
-          x.innerHTML = "The request to get user location timed out."
+          alert("The request to get user location timed out.")
           break;
       case error.UNKNOWN_ERROR:
-          x.innerHTML = "An unknown error occurred."
+         alert("An unknown error occurred.")
           break;
   }
 }
