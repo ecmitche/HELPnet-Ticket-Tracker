@@ -28,13 +28,17 @@ var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
   Creates a marker on the CIB
 */
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 39.1686, lng: -86.5174},
-    zoom: 15,  //All of Bloomington is visible with this zoom level
-    mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
-    mapTypeControl:false, //reduce screen clutter
-    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
-                            });
+  
+/*  
+     All of Bloomington is visible with this zoom level
+     Default Google Maps type, and much clearer than the other options.
+     reduce screen clutter
+*/
+  myOptions = new google.maps.MapOptions({center: {lat: 39.1686, lng: -86.5174},zoom: 15,mapTypeId:google.maps.MapTypeId.ROADMAP,mapTypeControl:false,navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}});
+  
+  map = new google.maps.Map(document.getElementById('map'), myOptions)
+    
+
   marker = new google.maps.Marker({position:CIB,map:map,title:"You are here!"});  
 }
 
