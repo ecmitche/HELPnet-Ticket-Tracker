@@ -1,6 +1,6 @@
 var map; //Google maps object
 var marker; //position Marker object
-
+//modification
 //location presets for future use
 var CIB = {lat: 39.172076, lng: -86.501560}; /* Cyberinfrastructure building */
 var INRD = {lat: 39.167530, lng: -86.526956}; /* 201 N. Indiana */
