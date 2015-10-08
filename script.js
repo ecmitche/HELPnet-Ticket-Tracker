@@ -1,6 +1,7 @@
 var map; //Google maps object
 var marker; //position Marker object
 var id; //position event handler ID
+
 //location presets for future use
 var CIB = {lat: 39.172076, lng: -86.501560}; /* Cyberinfrastructure building */
 var INRD = {lat: 39.167530, lng: -86.526956}; /* 201 N. Indiana */
@@ -22,19 +23,31 @@ var HEALTHY = {lat: 39.167772, lng: -86.522478}; /* Healthy IU */
 var GISB = {lat: 39.169646, lng: -86.516171}; /* Global and International Studies Building, Patrick Omeara */
 var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
 
-/*function initMap() {
+/*
+	Creates a map centered on the CIB
+  Creates a marker on the CIB
+*/
+function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.1686, lng: -86.5174},
-    zoom: 15
-  });*/
+    zoom: 15  //All of Bloomington is visible with this zoom level
+    mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
+    mapTypeControl:false, //reduce screen clutter
+    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
+                            });
+  marker = new google.maps.Marker({position:CIB,map:map,title:"You are here!"});  
+}
 
-//Check if supported browser
+/* 
+	Check if supported browser
+ 	Then get the current location with a callback function 
+*/
 function getLocation() {
 	if (navigator.geolocation) {
-    	var positionOptions = {enableHighAccuracy: true,timeout: 500,maximumAge: 10};
+    	var positionOptions = {enableHighAccuracy: true,timeout: 500,maximumAge: 100};
       id = navigator.geolocation.getCurrentPosition.watchPosition(showPosition, showError, positionOptions);
   } else { 
-      x.innerHTML = "Geolocation is not supported by this browser.";
+      alert("Geolocation is not supported by this browser.");
   }
 }
 
@@ -42,17 +55,11 @@ function getLocation() {
 function showPosition(position) {
     lat = position.coords.latitude;
     lng = position.coords.longitude;
-    var latlng = new google.maps.LatLng(lat, lng); //populated Position object
-
-    var myOptions = {
-    center:latlng,zoom:17,
-    mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
-    mapTypeControl:false, //reduce screen clutter
-    navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
-    }
+    var latlng = new google.maps.LatLng(lat, lng); //populated LatLng object 
+		map.setZoom(17); //Testing zoom function
+		marker.setPosition(latlng); //moves the marker to current position
     
-    map = new google.maps.Map(document.getElementById("map"), myOptions); //make the map
-    marker = new google.maps.Marker({position:latlng,map:map,title:"You are here!"}); //put a marker on screen
+   // map = new google.maps.Map(document.getElementById("map"), myOptions); //make the map
 }
 
 /*  var CIB_marker = new google.maps.Marker({
