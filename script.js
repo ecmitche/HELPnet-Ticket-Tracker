@@ -34,11 +34,15 @@ function initMap() {
      Default Google Maps type, and much clearer than the other options.
      reduce screen clutter
 */
-  myOptions = new google.maps.MapOptions({center: {lat: 39.1686, lng: -86.5174},zoom: 15,mapTypeId:google.maps.MapTypeId.ROADMAP,mapTypeControl:false,navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}});
+  var mapOpt = {
+    	center: {lat: 39.1686, lng: -86.5174}, 
+    	zoom: 15, mapTypeId:google.maps.MapTypeId.ROADMAP, 
+    	mapTypeControl:false, 
+    	navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
   
-  map = new google.maps.Map(document.getElementById('map'), myOptions)
+  map = new google.maps.Map(document.getElementById('map'), mapOpt);
     
-
   marker = new google.maps.Marker({position:CIB,map:map,title:"You are here!"});  
 }
 
