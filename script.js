@@ -30,7 +30,7 @@ var RAD = {lat: 39.164341, lng: -86.521304}; /* Radiation Safety */
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 39.1686, lng: -86.5174},
-    zoom: 15  //All of Bloomington is visible with this zoom level
+    zoom: 15,  //All of Bloomington is visible with this zoom level
     mapTypeId:google.maps.MapTypeId.ROADMAP, //Default Google Maps type, and much clearer than the other options.
     mapTypeControl:false, //reduce screen clutter
     navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL} //reduce screen clutter
