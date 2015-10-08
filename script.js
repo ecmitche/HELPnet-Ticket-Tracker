@@ -36,7 +36,7 @@ function initMap() {
 */
   var mapOpt = {
     	center: {lat: 39.1686, lng: -86.5174}, 
-    	zoom: 15, mapTypeId:google.maps.MapTypeId.ROADMAP, 
+    	zoom: 17, mapTypeId:google.maps.MapTypeId.ROADMAP, 
     	mapTypeControl:false, 
     	navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
   };
@@ -52,7 +52,7 @@ function initMap() {
 */
 function getLocation() {
 	if (navigator.geolocation) {
-    	var positionOptions = {enableHighAccuracy: true,timeout: 500,maximumAge: 100};
+    	var positionOptions = {enableHighAccuracy: true,timeout: 5,maximumAge: 0};
       id = navigator.geolocation.getCurrentPosition.watchPosition(showPosition, showError, positionOptions);
   } else { 
       alert("Geolocation is not supported by this browser.");
@@ -64,8 +64,8 @@ function showPosition(position) {
     lat = position.coords.latitude;
     lng = position.coords.longitude;
     var latlng = new google.maps.LatLng(lat, lng); //populated LatLng object 
-		map.setZoom(17); //Testing zoom function
-		marker.setPosition(latlng); //moves the marker to current position
+//		map.setZoom(17); //Testing zoom function
+//		marker.setPosition(latlng); //moves the marker to current position
     
    // map = new google.maps.Map(document.getElementById("map"), myOptions); //make the map
 }
