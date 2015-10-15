@@ -1,13 +1,19 @@
 <html>
 
 <body>
+  <button type="button" onclick="displayURL()">Display URL</button>
 <button type="button" onclick="authenticate()">Login Test</button>
+<div id='URL'></div>
 
 <script>
 function authenticate() {
   window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
-  window.location.href = "https://footprints.iu.edu/MRcgi/MRhomepage.pl?USER=ecmitche&PROJECTID=54&MRP=1f3e43675e76943e885957797d9cfaaf3&OPTION=none&WRITECACHE=1&FIRST_TIME_IN_FP=1&FIRST_TIME_IN_PROJ=1&dispatch_script=MRlogin.pl&";
+  //window.location.href = "https://footprints.iu.edu/MRcgi/MRhomepage.pl?USER=ecmitche&PROJECTID=54&MRP=1f3e43675e76943e885957797d9cfaaf3&OPTION=none&WRITECACHE=1&FIRST_TIME_IN_FP=1&FIRST_TIME_IN_PROJ=1&dispatch_script=MRlogin.pl&";
   }
+  
+function displayURL() {
+  document.getElementById('URL').innerHTML = window.location.href;
+}
 </script>
 
 </body>
