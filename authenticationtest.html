@@ -4,10 +4,12 @@
   <button type="button" onclick="displayURL()">Display URL</button>
 <button type="button" onclick="authenticate()">Login Test</button>
 <button type="button" onclick="validate()" id="val">Validate</button>
+<button type="button" onclick="serverRequest()" id="val">Server Request</button>
 <div id='URL'></div>
 <div id='ticket'></div>
 <div id='log'></div>
 <div id='valReturn'></div>
+<div id='test'></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
@@ -38,16 +40,24 @@ function validate() {
 function displayURL() {
   document.getElementById('URL').innerHTML = URL;
 }
-</script>
 
-<script>
-$(document).ready(function(){
-    $("#val").click(function(){
-        $.ajax({url: "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", success: function(result){
-            $("#valReturn").html(result);
-        }});
-    });
-});
+var xhr = new XMLHttpRequest();
+
+function serverRequest() {
+  xhr.onreadystatechange = XHRhandler;
+  xhr.open("GET", "xmlproxy.php?url=http://www.google.com", false);
+  xhr.send(null);
+}
+
+  // handle response
+function XHRhandler() {
+  if (xhr.readyState == 4) {
+    var resp = xhr.responseText;
+    document.getElementById("test").innerHTML = resp;
+    xhr = null;
+  }
+}
+
 </script>
 
 </body>
