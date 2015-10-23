@@ -3,7 +3,8 @@
 <body>
   <button type="button" onclick="displayURL()">Display URL</button>
 <button type="button" onclick="authenticate()">Login Test</button>
-<div id='placeholder'></div>
+<div id='URL'></div>
+<div id='ticket'></div>
 
 <script>
 var URL = window.location.href;
@@ -12,15 +13,14 @@ function authenticate() {
   if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
   } else {
-    document.getElementById("placeholder").innerHTML = URL;
     var ticketNum = URL.substring(URL.indexOf('&'), URL.length);
-    //document.getElementById("placeholder").innerHTML = ticketNum;
+    document.getElementById("ticket").innerHTML = ticketNum;
     //window.location.href = "https://footprints.iu.edu/footprints/";
   }
 }
   
 function displayURL() {
-  document.getElementById('URL').innerHTML = window.location.href;
+  document.getElementById('URL').innerHTML = URL;
 }
 </script>
 
