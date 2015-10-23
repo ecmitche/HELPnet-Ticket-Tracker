@@ -13,6 +13,7 @@
 
 <script>
 var URL = window.location.href;
+var ticketNum;
 
 function authenticate() {
   if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html" || 
@@ -28,7 +29,7 @@ function validate() {
     URL === "http://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     document.getElementById("log").innerHTML = "You have not authenticated yet";
   } else {
-    var ticketNum = URL.substring((URL.indexOf('?') + 11), URL.length);
+    ticketNum = URL.substring((URL.indexOf('?') + 11), URL.length);
     document.getElementById("ticket").innerHTML = ticketNum;
     window.open("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", '_blank');
   }
