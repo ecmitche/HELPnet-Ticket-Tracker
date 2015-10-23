@@ -12,7 +12,10 @@ function authenticate() {
   if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
   } else {
-    window.location.href = "https://footprints.iu.edu/footprints/";
+    displayURL();
+    var ticketNum = URL.substring(URL.indexOf('&'), URL.length);
+    document.getElementById("URL").innerHTML = ticketNum;
+    //window.location.href = "https://footprints.iu.edu/footprints/";
   }
 }
   
