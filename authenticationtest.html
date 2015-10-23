@@ -10,10 +10,11 @@
 var URL = window.location.href;
 
 function authenticate() {
-  if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
+  if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html" || 
+    URL === "http://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
   } else {
-    var ticketNum = URL.substring(URL.indexOf('&'), URL.length);
+    var ticketNum = URL.substring((URL.indexOf('?') + 10), URL.length);
     document.getElementById("ticket").innerHTML = ticketNum;
     //window.location.href = "https://footprints.iu.edu/footprints/";
   }
