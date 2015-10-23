@@ -35,6 +35,11 @@ function validate() {
   }
 }
 
+function displayURL() {
+  document.getElementById('URL').innerHTML = URL;
+}
+</script>
+
 <script>
 $(document).ready(function(){
     $("#val").click(function(){
@@ -43,13 +48,6 @@ $(document).ready(function(){
         }});
     });
 });
-</script>
-
-
-
-function displayURL() {
-  document.getElementById('URL').innerHTML = URL;
-}
 </script>
 
 </body>
