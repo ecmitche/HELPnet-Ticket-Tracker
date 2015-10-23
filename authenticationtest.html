@@ -14,8 +14,12 @@ function authenticate() {
     URL === "http://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
   } else {
-    var ticketNum = URL.substring((URL.indexOf('?') + 10), URL.length);
+    var ticketNum = URL.substring((URL.indexOf('?') + 11), URL.length);
     document.getElementById("ticket").innerHTML = ticketNum;
+    window.open("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", '_blank');
+    
+    
+    
     //window.location.href = "https://footprints.iu.edu/footprints/";
   }
 }
