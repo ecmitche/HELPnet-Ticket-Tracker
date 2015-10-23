@@ -45,7 +45,7 @@ var xhr = new XMLHttpRequest();
 
 function serverRequest() {
   xhr.onreadystatechange = XHRhandler;
-  xhr.open("GET", "xmlproxy.php?url=http://www.google.com", false);
+  xhr.open("GET", "proxy.php?url=http://www.google.com", false);
   xhr.send(null);
 }
 
