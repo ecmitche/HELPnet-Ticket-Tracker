@@ -3,10 +3,13 @@
 <body>
   <button type="button" onclick="displayURL()">Display URL</button>
 <button type="button" onclick="authenticate()">Login Test</button>
-<button type="button" onclick="validate()">Validate</button>
+<button type="button" onclick="validate()" id="val">Validate</button>
 <div id='URL'></div>
 <div id='ticket'></div>
 <div id='log'></div>
+<div id='valReturn'></div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <script>
 var URL = window.location.href;
@@ -30,6 +33,19 @@ function validate() {
     window.open("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", '_blank');
   }
 }
+
+<script>
+$(document).ready(function(){
+    $("#val").click(function(){
+        $.ajax({url: "https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", success: function(result){
+            $("#valReturn").html(result);
+        }});
+    });
+});
+</script>
+
+
+
 function displayURL() {
   document.getElementById('URL').innerHTML = URL;
 }
