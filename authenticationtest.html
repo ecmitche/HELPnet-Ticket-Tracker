@@ -3,8 +3,10 @@
 <body>
   <button type="button" onclick="displayURL()">Display URL</button>
 <button type="button" onclick="authenticate()">Login Test</button>
+<button type="button" onclick="validate()">Validate</button>
 <div id='URL'></div>
 <div id='ticket'></div>
+<div id='log'></div>
 
 <script>
 var URL = window.location.href;
@@ -14,16 +16,20 @@ function authenticate() {
     URL === "http://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
     window.location.href = "https://cas.iu.edu/cas/login?cassvc=IU&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html";
   } else {
-    var ticketNum = URL.substring((URL.indexOf('?') + 11), URL.length);
-    document.getElementById("ticket").innerHTML = ticketNum;
-    window.open("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", '_blank');
-    
-    
-    
     //window.location.href = "https://footprints.iu.edu/footprints/";
   }
 }
   
+function validate() {
+  if(URL === "https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html" || 
+    URL === "http://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html") {
+    document.getElementById("log").innerHTML = "You have not authenticated yet";
+  } else {
+    var ticketNum = URL.substring((URL.indexOf('?') + 11), URL.length);
+    document.getElementById("ticket").innerHTML = ticketNum;
+    window.open("https://cas.iu.edu/cas/validate?cassvc=IU&casticket=" + ticketNum + "&casurl=https://rawgit.com/ecmitche/HELPnet-Ticket-Tracker/master/authenticationtest.html", '_blank');
+  }
+}
 function displayURL() {
   document.getElementById('URL').innerHTML = URL;
 }
